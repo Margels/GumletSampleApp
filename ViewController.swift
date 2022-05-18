@@ -83,15 +83,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     // save to storage
                     if url != nil, let url = url {
                         
-                        // option 1: direct upload on Gumlet
-                        self.directUpload(url: url, profileID: "string", tag: "my tag", title: "my title", description: "my desc")
-                        // option 2: upload on another storage first
-                        //self.saveToStorage(url: url)
+                        // loading screen while video is exported
+                        self.loadingScreen(animating: true)
+                        
+                        // get video orientation from frame
                         let video = AVAsset(url: url)
                         let generator = AVAssetImageGenerator.init(asset: video)
                         let cgImage = try! generator.copyCGImage(at: CMTime(seconds: 0, preferredTimescale: 1), actualTime: nil)
                         let image = UIImage(cgImage: cgImage)
                         print("Frames width \(image.size.width) x height \(image.size.height)")
+                        
+                        // option 1: direct upload on Gumlet
+                        self.directUpload(url: url, profileID: "-string-", tag: "my tag", title: "my title", description: "my desc")
+                        
+                        // option 2: upload on another storage first
+                        //self.saveToStorage(url: url)
                         
                     }
                     
