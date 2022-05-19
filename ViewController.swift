@@ -164,10 +164,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                           self.checkStatus(assetID: a) }
                     
                     // start upload url request
-                    if let playbackURL = URL(string: uploadURL) {
-                        self.uploadURL(url: url, playbackURL: playbackURL)
+                    if let upload = URL(string: uploadURL) {
+                        self.uploadURL(url: url, uploadURL: upload) }
                     
+                    // get the video playback url
+                    if let output = dictionary["output"] as? [String: Any], let playback = output["playback_url"] as? String {
+                        print("playback URL: \(playback)")
+                        self.videoUrl = URL(string: playback)
+                        
                     }
+
                 }
             }
         })
@@ -179,7 +185,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
-    func uploadURL(url: URL, playbackURL: URL) {
+    func uploadURL(url: URL, uploadURL: URL) {
         
         let headers = [
           "Content-Type": "video/mp4"
