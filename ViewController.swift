@@ -316,7 +316,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     
                     print("Status: \(s)")
                     
-                    // if ready
+                    // if not ready
                     if s != "ready" {
                       
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
@@ -324,7 +324,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                             self.checkStatus(assetID: assetID)
                       })
                     
-                    // if not ready
+                    // if ready
                     } else {
                         
                         DispatchQueue.main.async {
