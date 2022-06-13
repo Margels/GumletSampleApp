@@ -5,14 +5,14 @@
 
 ## Assignment:
 
- * Step-by-step instructions on implementing the upload of UGC 
-        ** **NOTE TO WRITER**: Be sure to include \*why\* each step is required
-        ** Setup Gumlet
-        ** Checklist of things to keep in mind for on-device processing
-        ** Mention any relevant libraries
-        ** How does compression before uploading work
-            *** iOS files are very large
-        ** Describe the compression and uploading pipeline
-        ** Process on device
-        ** Upload video
-        ** [Writer’s Choice]: Retrieve uploaded video’s data
+Step-by-step instructions on implementing the upload of UGC \*\*NOTE TO WRITER\*\*: Be sure to include \*why\* each step is required
+       
+* Setup Gumlet <br>
+* Checklist of things to keep in mind for on-device processing <br>
+* Mention any relevant libraries <br>
+* How does compression before uploading work <br>
+* * iOS files are very large <br>
+* Describe the compression and uploading pipeline <br>
+* Process on device <br> 
+* Upload video <br>
+* [Writer’s Choice]: Retrieve uploaded video’s data
