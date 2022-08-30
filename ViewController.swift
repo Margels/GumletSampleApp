@@ -5,6 +5,7 @@
 //  Created by Martina on 22/04/22.
 //
 
+
 import UIKit
 import Foundation
 import AVKit
@@ -94,7 +95,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         print("Frames width \(image.size.width) x height \(image.size.height)")
                         
                         // option 1: direct upload on Gumlet
-                        self.directUpload(url: url, profileID: "-string-", tag: "my tag", title: "my title", description: "my desc")
+                        self.directUpload(url: url, profileID: "\(constants.profile)", tag: "my tag", title: "my title", description: "my desc")
                         
                         // option 2: upload on another storage first
                         //self.saveToStorage(url: url)
@@ -119,11 +120,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let headers = [
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer -string-"
+            "Authorization": "Bearer \(constants.bearer)"
         ]
         
         let parameters: [String : Any] = [
-            "collection_id": "-string-",
+            "collection_id": "\(constants.collection)",
             "format": "MP4",
             "profile_id": "\(profileID)",
             "tag": "\(tag)",
@@ -192,7 +193,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         ]
         
         // define a request
-        let request = NSMutableURLRequest(url: playbackURL,
+        let request = NSMutableURLRequest(url: uploadURL,
                                                   cachePolicy: .useProtocolCachePolicy,
                                                   timeoutInterval: 10.0)
         request.httpMethod = "PUT"
@@ -227,12 +228,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let headers = [
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer -string-"
+            "Authorization": "Bearer \(constants.bearer)"
         ]
         
         let parameters: [String : Any] = [
             "format": "MP4",
-            "collection_id": "-string-",
+            "collection_id": "\(constants.collection)",
             "input": "\(url)",
             "profile_id": "\(profileID)",
             "tag": "\(tag)",
@@ -292,7 +293,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let headers = [
           "Accept": "application/json",
-          "Authorization": "Bearer -string-"
+          "Authorization": "Bearer \(constants.bearer)"
         ]
         let url = "https://api.gumlet.com/v1/video/assets/\(assetID)"
 
@@ -324,10 +325,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     
                     // if not ready
                     if s != "ready" {
-                      
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                            self.loadingLabel.text = "\(s)"
+                            self.loadingLabel.text = "\(s)..."
                             self.checkStatus(assetID: assetID)
+                            
                       })
                     
                     // if ready
@@ -412,7 +414,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     } else if let vurl = url {
                         self.videoUrl = vurl
                         print("vurl \(vurl)")
-                        self.uploadOnGumlet(url: vurl, profileID: "-string-", tag: "my tag", title: "my title", description: "my description")
+                        self.uploadOnGumlet(url: vurl, profileID: "Bearer \(constants.bearer)", tag: "my tag", title: "my title", description: "my description")
                             
                         }
                     }
